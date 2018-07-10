@@ -24,7 +24,20 @@ class Article extends React.Component {
       </React.Fragment>
     );
   }
+  
+  componentDidMount() {
+        var self = this;
+        this._timer = setInterval(function() { self.forceUpdate() }, 5000);
+    }
+    
+  componentWillUnmount() {
+        if (this._timer) {
+          clearInterval(this._timer);
+          this._timer = null;
+        }
+    }
 }
+
 
 Article.propTypes = {
   title: PropTypes.string,
